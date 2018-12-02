@@ -19,6 +19,9 @@ public class InputManager : MonoBehaviour
 		}
 
 		p.Q = Input.GetKeyDown(KeyCode.Q);
+		p.W = Input.GetKeyDown(KeyCode.W);
+		p.E = Input.GetKeyDown(KeyCode.E);
+		p.R = Input.GetKeyDown(KeyCode.R);
 
 		GameManager.Instance.HandleInput(p);
 	}

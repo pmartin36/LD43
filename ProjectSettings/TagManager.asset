@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - TutorialHeader
+  - TutorialDescription
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
+  - Note
   - 
   - 
   - 
@@ -38,6 +40,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Play Area Canvas
+    uniqueID: 1336576555
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

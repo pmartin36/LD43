@@ -10,20 +10,17 @@ public class GameManager : Singleton<GameManager> {
 
 	public static float TIMESCALE = 180f;
 	public static float TOTAL_TIME = 48 * 3600;
+	public static event EventHandler<TaskChangeEventArgs> TaskChanged;
 
 	public ContextManager ContextManager;
-	public LevelManager LevelManager {
-		get {
-			return ContextManager as LevelManager;
-		}
-		set {
-			ContextManager = value;
-		}
-	}
 
 	public Timer RemainingTimer;
 	public Status Status;
 	public CompletedTaskTracker TaskTracker;
+
+	public PlayAreaMenu PlayAreaMenu;
+	public ScoreScreen ScoreScreen;
+	public CameraController camera;
 
 	public void Awake() {
 		RemainingTimer = new Timer();
@@ -50,19 +47,50 @@ public class GameManager : Singleton<GameManager> {
 	}
 
 	public void HandleInput(InputPackage p) {
-		if(p.Q) {
-			TaskTracker.CompleteTask(Task.Art);
-		}
 		ContextManager?.HandleInput(p);
 	}
 
 	public void ReloadLevel() {
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
+
+	public void SetCurrentTask(Task t) {
+		TaskChanged?.Invoke(this, new TaskChangeEventArgs(t));
+	}
+
+	public void ReturnToHub() {
+		TaskChanged?.Invoke(this, new TaskChangeEventArgs(Task.None));
+		PlayAreaMenu.Open();
+	}
+
+	public void GoToSleep() {
+		if(!camera.Sleeping) {
+			StartCoroutine(Sleep());
+		}
+	}
+
+	private IEnumerator Sleep() {
+		camera.ShowSleep();
+		yield return new WaitForSeconds(2f);
+
+		
+		RemainingTimer.Update(-8 * 3600);
+		Status.Sleep();
+
+		camera.StopShowSleep();
+	}
 }
 
 public enum Task {
+	None,
 	Art,
 	Code,
 	Music
+}
+
+public class TaskChangeEventArgs: EventArgs {
+	public Task Task { get; set; }
+	public TaskChangeEventArgs(Task task) {
+		Task = task;
+	}
 }
