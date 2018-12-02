@@ -17,6 +17,8 @@ public class Status  {
 	public ReliefActivity ReliefActivity { get; set; }
 	private Timer RemainingTimer;
 
+	private Task CurrentTask;
+
 	public Status() {
 		Boredom = 0;
 		Sleepiness = 0f;
@@ -24,12 +26,13 @@ public class Status  {
 		Hunger = 0f;
 
 		RemainingTimer = GameManager.Instance.RemainingTimer;
+		GameManager.TaskChanged += SwitchingTask;
 	}
 
 	public void Update(float deltaTime) {
 		// get totally bored after 4 hours
-		Boredom += deltaTime / (3600f * 4f);
-
+		Boredom += CurrentTask == Task.None ? 0 : deltaTime / (3600f * 4f);
+	
 		// get sleepy after 16 hours
 		Sleepiness += deltaTime / (3600f * 16f);
 
@@ -44,11 +47,14 @@ public class Status  {
 			deltaTime / (3600f * 24f);
 	}
 
-	public void SwitchingActivity() {
-		Boredom -= 0.75f;
+	public void SwitchingTask(object sender, TaskChangeEventArgs args) {
+		CurrentTask = args.Task;
+		if(CurrentTask == Task.None) {
+			Boredom = Mathf.Max(0, Boredom - 0.75f);
+		}
 	}
 
 	public void Sleep() {
-		Sleepiness -= 0.75f;
+		Sleepiness = Mathf.Max(0, Sleepiness - 0.75f);
 	}
 }
