@@ -168,14 +168,14 @@ public class ArtGameManager : ContextManager
 		else if (p.Z) {
 			// delete last segment
 			if (PlayerTraceLineSegments.Count > 0) {
-				if(GameManager.Instance.Status.ReliefActivity != ReliefActivity.Eating ) {
+				if(GameManager.Instance.Status.ReliefActivity != ReliefActivity.Eating) {
 					var popped = PlayerTraceLineSegments.Pop();
 					PlayerTraceCheckedLinePoints.RemoveRange(PlayerTraceCheckedLinePoints.Count - popped.CheckedPoints.Count, popped.CheckedPoints.Count );
 					GameManager.DestroyImmediate(popped.gameObject);
 				}
 				else {
 					// can't undo while eating
-
+					ArtCanvas.ShowUndoInvalid();
 				}
 			}
 		}
