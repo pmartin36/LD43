@@ -50,7 +50,7 @@ public class Status  {
 	public void SwitchingTask(object sender, TaskChangeEventArgs args) {
 		CurrentTask = args.Task;
 		if(CurrentTask == Task.None) {
-			Boredom = Mathf.Max(0, Boredom - 0.75f);
+			Boredom = Mathf.Max(0, Boredom - 0.5f);
 		}
 	}
 

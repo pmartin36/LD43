@@ -7,6 +7,9 @@ public class InputPackage {
 	public bool W { get; set; }
 	public bool E { get; set; }
 	public bool R { get; set; }
+	public bool Z { get; set; }
+
+	public bool LeftMouse { get; set; }
 }
 
 public class InputManager : MonoBehaviour
@@ -22,6 +25,9 @@ public class InputManager : MonoBehaviour
 		p.W = Input.GetKeyDown(KeyCode.W);
 		p.E = Input.GetKeyDown(KeyCode.E);
 		p.R = Input.GetKeyDown(KeyCode.R);
+
+		p.Z = Input.GetKeyDown(KeyCode.Z);
+		p.LeftMouse = Input.GetMouseButton(0);
 
 		GameManager.Instance.HandleInput(p);
 	}

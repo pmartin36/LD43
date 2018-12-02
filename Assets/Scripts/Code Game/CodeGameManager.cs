@@ -22,6 +22,12 @@ public class CodeGameManager : ContextManager
 		GenerateSeries();
 	}
 
+	public void OnDisable() {
+		foreach (Number n in Numbers) {
+			Destroy(n.gameObject);
+		}
+	}
+
 	public void GenerateSeries() {
 		bool eating = GameManager.Instance.Status.ReliefActivity == ReliefActivity.Eating;
 		int numSeries = 7;
@@ -51,12 +57,9 @@ public class CodeGameManager : ContextManager
 		List<int> missingNumbers = new List<int>();
 		if (eating) {
 			missingNumbers.Add(0);
-			missingNumbers.Add(UnityEngine.Random.Range(2, numSeries));
 		}
-		else {
-			missingNumbers.Add(UnityEngine.Random.Range(2, 4));
-			missingNumbers.Add(UnityEngine.Random.Range(5, numSeries));
-		}
+		missingNumbers.Add(UnityEngine.Random.Range(2, 4));
+		missingNumbers.Add(UnityEngine.Random.Range(5, numSeries));
 
 		CorrectSeries = new List<int>();
 		Numbers = new List<Number>();
