@@ -59,9 +59,12 @@ public class CodeGameManager : ContextManager
 		List<int> missingNumbers = new List<int>();
 		if (eating) {
 			missingNumbers.Add(0);
+			missingNumbers.Add(UnityEngine.Random.Range(2, numSeries));
 		}
-		missingNumbers.Add(UnityEngine.Random.Range(2, 4));
-		missingNumbers.Add(UnityEngine.Random.Range(5, numSeries));
+		else {
+			missingNumbers.Add(UnityEngine.Random.Range(2, 4));
+			missingNumbers.Add(UnityEngine.Random.Range(5, numSeries));
+		}
 
 		do {
 			SeriesType seriesType = (SeriesType)UnityEngine.Random.Range(0,2);
