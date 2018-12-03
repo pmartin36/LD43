@@ -149,7 +149,7 @@ public class ArtGameManager : ContextManager
 			return;
 		}
 
-		Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0f,-0.1f);
+		Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0.05f,-0.05f);
 		if (p.LeftMouse && ActiveLineSegment == null) {
 			// started new line
 			LineSegment l = Instantiate(LineSegmentPrefab, LineSegmentContainer); 
