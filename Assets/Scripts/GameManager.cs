@@ -6,13 +6,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(InputManager))]
+[RequireComponent(typeof(MusicManager))]
 public class GameManager : Singleton<GameManager> {
 
 	public static float TIMESCALE = 180f;
-	public static float TOTAL_TIME = 48 * 3600;
+	public static float TOTAL_TIME = 0.25f * 3600;
 	public static event EventHandler<TaskChangeEventArgs> TaskChanged;
 
 	public ContextManager ContextManager;
+	private MusicManager musicManager;
 
 	public Timer RemainingTimer;
 	public Status Status;
@@ -27,9 +29,10 @@ public class GameManager : Singleton<GameManager> {
 	public PostGameCanvas PostGameCanvas;
 	private bool gameOver = false;
 
-	public bool SkipIntro = false;
+	public bool SkipIntro = true;
 
 	public void Awake() {
+		musicManager = GetComponent<MusicManager>();
 		Init();
 	}
 

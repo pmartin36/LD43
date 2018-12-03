@@ -11,15 +11,15 @@ public class MentalHealthScores : MonoBehaviour {
 
 	public void Init(Status s) {
 		int val = (int)(s.Boredom * 100);
-		Bored.text = val.ToString();
+		Bored.text = val.ToString() + "%";
 
 		val = (int)(s.Anxiety * 100);
-		Anxiety.text = val.ToString();
+		Anxiety.text = val.ToString() + "%";
 
 		val = (int)(s.Hunger * 100);
-		Hunger.text = val.ToString();
+		Hunger.text = val.ToString() + "%";
 
 		val = (int)(s.Sleepiness * 100);
-		Sleep.text = val.ToString();
+		Sleep.text = val.ToString() + "%";
 	}
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TutorialHeader
   - TutorialDescription
+  - TimeRemainingHeader
   layers:
   - Default
   - TransparentFX
