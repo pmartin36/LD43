@@ -22,24 +22,41 @@ public class GameManager : Singleton<GameManager> {
 	public ScoreScreen ScoreScreen;
 	public CameraController camera;
 
+	public QuitScreen QuitScreen;
+
+	public PostGameCanvas PostGameCanvas;
+	private bool gameOver = false;
+
 	public void Awake() {
+		Init();
+	}
+
+	public void Init() {
 		RemainingTimer = new Timer();
 		Status = new Status();
 		TaskTracker = new CompletedTaskTracker();
+		RemainingTimer.Value = TOTAL_TIME;
 	}
 
 	public void Start() {
-		RemainingTimer.Value = TOTAL_TIME;
 		RemainingTimer.Paused = false;
 	}
 
 	public void Update() {
-		RemainingTimer.Update(-Time.deltaTime * TIMESCALE);
-		if(RemainingTimer.Expired) {
-			// jam over, do scoring
+		if(!gameOver) {
+			RemainingTimer.Update(-Time.deltaTime * TIMESCALE);
+			if(RemainingTimer.Expired) {
+				gameOver = true;
+				var ps = PostGameCanvas.PostGameScreen;
+				ps.gameObject.SetActive(true);
+				ps.Init(Status, TaskTracker);
+			}
+			Status.Update(Time.deltaTime * TIMESCALE);
 		}
+	}
 
-		Status.Update(Time.deltaTime * TIMESCALE);
+	public void JammerQuit(string reason) {
+		QuitScreen.Show(reason);
 	}
 
 	public void Exit() {
@@ -52,6 +69,7 @@ public class GameManager : Singleton<GameManager> {
 
 	public void ReloadLevel() {
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		Init();
 	}
 
 	public void SetCurrentTask(Task t) {

@@ -44,7 +44,7 @@ public class ArtGameManager : ContextManager
 		Camera c = Camera.main;
 		MaxDrawCoordinates = new Vector2(
 			4,
-			c.orthographicSize * 0.85f + 1
+			c.orthographicSize * 0.95f + 1
 		);
 		MinDrawCoordinates = new Vector2(
 			-c.orthographicSize * c.aspect * 0.85f,
