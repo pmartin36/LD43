@@ -50,27 +50,11 @@ public class CodeGameManager : ContextManager
 		bool eating =  ReliefActivity == ReliefActivity.Eating;
 		int numSeries = 7;
 
-		SeriesType seriesType = (SeriesType)UnityEngine.Random.Range(0,2);
-		int plus;
-		int mult_min;
-		int mult_max;
-		int currentValue;
-		switch (seriesType) {
-			default:
-			case SeriesType.Multiply:
-				mult_min = 2;
-				mult_max = 2;
-				plus = UnityEngine.Random.Range(-1, 3);
-				currentValue = UnityEngine.Random.Range(0, 4);
-				break;
-			case SeriesType.Linear:
-				mult_min = 2;
-				mult_max = 10;
-				plus = UnityEngine.Random.Range(-2, 4);
-				currentValue = plus;
-				break;
-		}
-		int mult = UnityEngine.Random.Range(mult_min, mult_max+1);
+		CorrectSeries = new List<int>();
+		Numbers = new List<Number>();
+
+		float currentLeft = 75;
+		float currentRight = 975;
 
 		List<int> missingNumbers = new List<int>();
 		if (eating) {
@@ -79,13 +63,29 @@ public class CodeGameManager : ContextManager
 		missingNumbers.Add(UnityEngine.Random.Range(2, 4));
 		missingNumbers.Add(UnityEngine.Random.Range(5, numSeries));
 
-		CorrectSeries = new List<int>();
-		Numbers = new List<Number>();
-
-		float currentLeft = 75;
-		float currentRight = 975;
-
 		do {
+			SeriesType seriesType = (SeriesType)UnityEngine.Random.Range(0,2);
+			int plus;
+			int mult_min;
+			int mult_max;
+			int currentValue;
+			switch (seriesType) {
+				default:
+				case SeriesType.Multiply:
+					mult_min = 2;
+					mult_max = 2;
+					plus = UnityEngine.Random.Range(-1, 3);
+					currentValue = UnityEngine.Random.Range(0, 4);
+					break;
+				case SeriesType.Linear:
+					mult_min = 2;
+					mult_max = 10;
+					plus = UnityEngine.Random.Range(-2, 4);
+					currentValue = plus;
+					break;
+			}
+			int mult = UnityEngine.Random.Range(mult_min, mult_max+1);
+		
 			CorrectSeries.Clear();
 			for(int i = 0; i < numSeries; i++) {
 				CorrectSeries.Add(currentValue);

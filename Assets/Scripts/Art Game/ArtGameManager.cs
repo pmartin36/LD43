@@ -184,10 +184,10 @@ public class ArtGameManager : ContextManager
 		}
 	}
 
-	private bool GenerateNewPoint(Vector2 lastPosition, ref Vector2 nextPosition, float offset = 0) {
+	private bool GenerateNewPoint(Vector2 lastPosition, ref Vector2 nextPosition, float offset = 0, float angleRange = 6f, float minAngle = 0) {
 		var posSeed = (Tracer.transform.position.x + Tracer.transform.position.y + offset);
-		var seed = (posSeed + Time.time) / 4f;
-		float noise = Perlin.Noise(seed) * 6f;
+		var seed = (posSeed + Time.time) / 3f;
+		float noise = Perlin.Noise(seed) * (minAngle + angleRange);
 
 		Vector3 lastDiff = (Vector2)Tracer.transform.position - lastPosition;
 		float lastAngle = Vector2.SignedAngle(Vector2.right, lastDiff);
@@ -219,12 +219,14 @@ public class ArtGameManager : ContextManager
 
 		float timeSinceLastReachedPoint = 0f;
 		bool generating = true;
+		float offset = 0;
 		while(ActualTraceCheckedLinePoints.Count < 200f && generating) {
 			if( Vector2.Distance(Tracer.transform.position, nextPosition) < 0.001f ) {
-				bool success = GenerateNewPoint(lastPosition, ref nextPosition);	
+				bool success = GenerateNewPoint(lastPosition, ref nextPosition, offset);	
 				if(!success) {
 					// try one more time before quitting
-					success = GenerateNewPoint(lastPosition, ref nextPosition, 0.5f);
+					offset += 0.5f;
+					success = GenerateNewPoint(lastPosition, ref nextPosition, offset, 15f, 10f);
 				}
 				lastPosition = Tracer.transform.position;
 				generating = success;
