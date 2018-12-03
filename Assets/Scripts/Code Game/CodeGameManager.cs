@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CodeGameManager : ContextManager
 {
@@ -17,9 +18,12 @@ public class CodeGameManager : ContextManager
 	public Number NumberPrefab;
 	public ScoreScreen ScoreScreen;
 
+	[SerializeField]
+	private Button SubmitButton;
+
 	public override void OnEnable() {
 		base.OnEnable();
-		Init();
+		Init();	
 	}
 
 	public override void OnDisable() {
@@ -31,6 +35,7 @@ public class CodeGameManager : ContextManager
 
 	public override void Init() {
 		base.Init();
+		SubmitButton.interactable = true;
 		GenerateSeries();
 	}
 
@@ -116,6 +121,7 @@ public class CodeGameManager : ContextManager
 	}
 
 	public void Submit() {
+		SubmitButton.interactable = false;
 		var numCorrect = 0;
 		for(int i = 0; i < CorrectSeries.Count; i++) {
 			if(Numbers[i].Fillable && Numbers[i].Value == CorrectSeries[i] ) {

@@ -12,6 +12,10 @@ public class TaskChangeListener : MonoBehaviour
 		GameManager.TaskChanged += OnTaskChange;
 	}
 
+	private void OnDestroy() {
+		GameManager.TaskChanged -= OnTaskChange;
+	}
+
 	public void OnTaskChange(object sender, TaskChangeEventArgs t) {
 		if(t.Task == ListeningForTask) {
 			ContextToWake.gameObject.SetActive(true);

@@ -18,6 +18,10 @@ public class DowntimeButtonBorder : MonoBehaviour
 		image.material.SetFloat("_Opacity", 0);
 	}
 
+	private void OnDestroy() {
+		Status.ReliefActivityChanged -= ReliefChanged;
+	}
+
 	public void Update() {
 		image.material.SetFloat("_Opacity", opacity);
 	}

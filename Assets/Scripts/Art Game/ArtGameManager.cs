@@ -79,6 +79,7 @@ public class ArtGameManager : ContextManager
 	}
 
 	public void Submit() {
+		ArtCanvas.SetSubmitButtonActive(false);
 		newLinesEnabled = false;
 		Vector2[] playerPoints = GetExtrudedPoints(PlayerTraceCheckedLinePoints, 0.075f);
 		Vector2[] tracePoints = GetExtrudedPoints(ActualTraceCheckedLinePoints, 0.075f);

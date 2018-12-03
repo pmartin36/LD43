@@ -21,6 +21,8 @@ public class Status  {
 	public float Anxiety { get; set; }
 	public float Hunger { get; set; }
 
+	public bool Paused { get; set; }
+
 	public ReliefActivity ReliefActivity { get; private set; }
 	private Timer RemainingTimer;
 
@@ -31,9 +33,14 @@ public class Status  {
 		Sleepiness = 0f;
 		Anxiety = 0.2f;
 		Hunger = 0f;
+		Paused = true;
 
 		RemainingTimer = GameManager.Instance.RemainingTimer;
 		GameManager.TaskChanged += SwitchingTask;
+	}
+
+	~Status() {
+		GameManager.TaskChanged -= SwitchingTask;
 	}
 
 	public void BeginReliefActivity(ReliefActivity a) {
@@ -55,6 +62,8 @@ public class Status  {
 	}
 
 	public void Update(float deltaTime) {
+		if(Paused) return;
+
 		// get totally bored after 4 hours
 		Boredom += CurrentTask == Task.None ? 0 : deltaTime / (3600f * 4f);
 		if(Boredom >= 1) {

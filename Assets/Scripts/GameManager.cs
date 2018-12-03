@@ -33,6 +33,12 @@ public class GameManager : Singleton<GameManager> {
 		Init();
 	}
 
+	public void BeginJam () {
+		RemainingTimer.Paused = false;
+		Status.Paused = false;
+		ReturnToHub();
+	}
+
 	public void Init() {
 		RemainingTimer = new Timer(TOTAL_TIME, true);
 		Status = new Status();

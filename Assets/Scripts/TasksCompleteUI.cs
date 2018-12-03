@@ -18,7 +18,11 @@ public class TasksCompleteUI : MonoBehaviour
         CompletedTaskTracker.TaskCompleted += TaskCompleted;
     }
 
-    public void TaskCompleted(object sender, TaskCompleteEventArgs args) {
+	private void OnDestroy() {
+		CompletedTaskTracker.TaskCompleted -= TaskCompleted;
+	}
+
+	public void TaskCompleted(object sender, TaskCompleteEventArgs args) {
 		switch (args.CompletedTask) {
 			case Task.Art:
 				ArtField.text = args.CurrentCompleted.ToString();
