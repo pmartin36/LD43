@@ -224,9 +224,13 @@ public class ArtGameManager : ContextManager
 			if( Vector2.Distance(Tracer.transform.position, nextPosition) < 0.001f ) {
 				bool success = GenerateNewPoint(lastPosition, ref nextPosition, offset);	
 				if(!success) {
-					// try one more time before quitting
-					offset += 0.5f;
-					success = GenerateNewPoint(lastPosition, ref nextPosition, offset, 15f, 10f);
+					// try two more time before quitting
+					int attempts = 0;
+					while(attempts < 3 && !success) {
+						offset += 0.5f;
+						attempts++;
+						success = GenerateNewPoint(lastPosition, ref nextPosition, offset, 15f * attempts, 10f * attempts);			
+					}		
 				}
 				lastPosition = Tracer.transform.position;
 				generating = success;

@@ -15,20 +15,26 @@ public class IntroScreen : MonoBehaviour
 	public Button Button;
 
 	private Animator anim;
+	private AudioSource audioSource;
 
     void Start()
     {
         var gm = GameManager.Instance;
 		anim = GetComponent<Animator>();
-		anim.Play("IntroSkip");
-		//if(gm.SkipIntro) {
-		//	anim.Play("IntroSkip");
-		//}
-		//else {
-		//	anim.Play("IntroShow");
-		//}
+		audioSource = GetComponent<AudioSource>();
+		// anim.Play("IntroSkip");
+		if (gm.SkipIntro) {
+			anim.Play("IntroSkip");
+		}
+		else {
+			anim.Play("IntroShow");
+		}
 		gm.SkipIntro = true;
     }
+
+	public void PlayThwack() {
+		audioSource.Play();
+	}
 
     public void StartJamming() {
 		anim.SetBool("Hiding", true);
