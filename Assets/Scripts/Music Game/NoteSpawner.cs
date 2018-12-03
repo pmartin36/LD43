@@ -35,7 +35,7 @@ public class NoteSpawner : MonoBehaviour {
 		bool eating = GameManager.Instance.Status.ReliefActivity == ReliefActivity.Eating;
 		int notesCreated = 0;
 		
-		while(notesCreated < 45) {
+		while(notesCreated < 30) {
 			var position = new Vector3(XSpawn, UnityEngine.Random.Range(YMinSpawn, YMaxSpawn));
 			MusicNote note = Instantiate<MusicNote>(NotePrefab, position, Quaternion.identity, null);
 

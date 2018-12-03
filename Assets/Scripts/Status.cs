@@ -79,7 +79,7 @@ public class Status  {
 		// get more anxious as we get closer to deadline
 		Anxiety += ReliefActivity == ReliefActivity.Outside ?
 			-deltaTime / (3600f * 4f) :
-			deltaTime / (3600 * Mathf.Lerp(4f, 32f, RemainingTimer.Value / GameManager.TOTAL_TIME));
+			deltaTime / (3600 * Mathf.Lerp(6f, 32f, RemainingTimer.Value / GameManager.TOTAL_TIME));
 		if (Anxiety >= 1) {
 			GameManager.Instance.JammerQuit("because you had a nervous breakdown");
 		}

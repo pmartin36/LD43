@@ -17,7 +17,7 @@ public class PostGameScreen : MonoBehaviour
 			 tasks.MusicTaskAverage * (tasks.MusicTasksCompleted / 10f)) * 5 / 3f;
 
 		float finalScore = addition - subtraction;
-		FinalScoreField.text = string.Format("{0:0.0}", finalScore);
+		FinalScoreField.text = string.Format("{0:0.0}", Mathf.Max(0, finalScore));
 
 		MentalHealth.Init(status);
 		GameScore.Init(tasks);

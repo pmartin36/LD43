@@ -39,7 +39,7 @@ public class MusicGameManager : ContextManager
 	}
 
 	public void SongOver() {
-		float normaleScore = Score/45f;
+		float normaleScore = Score/30f;
 		GameManager.Instance.TaskTracker.CompleteTask(Task, normaleScore);
 		ScoreScreen.Show(Task, normaleScore);
 	}
