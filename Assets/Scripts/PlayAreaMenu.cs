@@ -9,6 +9,10 @@ public class PlayAreaMenu : MonoBehaviour
 	public Image Cover;
 	private Animator anim;
 
+	[SerializeField]
+	private GameObject DowntimeBox;
+	private bool firstTime = true;
+
 	public bool Transitioning;
 	public Task TransitioningTask;
 
@@ -42,6 +46,13 @@ public class PlayAreaMenu : MonoBehaviour
 
 	public void Open() {
 		Transitioning = true;
+		if(firstTime) {
+			DowntimeBox.SetActive(false);
+		}
+		else {
+			DowntimeBox.SetActive(true);
+		}
+		firstTime = false;
 		anim.Play("Uncover");
 	}
 }

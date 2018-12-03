@@ -13,17 +13,40 @@ public class GameScores : MonoBehaviour {
 	public TMP_Text AudioAverage;
 
 	public void Init(CompletedTaskTracker t) {
-		string text = string.Format("{0:0.0}", t.CodeTaskAverage * 5 * (t.CodeTasksCompleted / 10f));
+		float val = t.CodeTaskAverage * (t.CodeTasksCompleted / 10f);
+		string text = string.Format("{0:0.0}", val * 5);
 		GameplayAverage.text = $"({text} average from {t.CodeTasksCompleted} ratings)";
+		int place = (int)Mathf.Lerp(999, 1, val);
+		GameplayRanking.text = $"{place}{GetSuffix(place)}";
 
-		text = string.Format("{0:0.0}", t.ArtTaskAverage * 5 * (t.ArtTasksCompleted / 10f));
+		val = t.ArtTaskAverage * (t.ArtTasksCompleted / 10f);
+		text = string.Format("{0:0.0}", val * 5);
 		GraphicsAverage.text = $"({text} average from {t.ArtTasksCompleted} ratings)";
+		place = (int)Mathf.Lerp(999, 1, val);
+		GraphicsRanking.text = $"{place}{GetSuffix(place)}";
 
-		text = string.Format("{0:0.0}", t.MusicTaskAverage * 5 * (t.MusicTasksCompleted / 10f));
+		val = t.ArtTaskAverage * (t.MusicTasksCompleted / 10f);
+		text = string.Format("{0:0.0}", val * 5);
 		AudioAverage.text = $"({text} average from {t.MusicTasksCompleted} ratings)";
+		place = (int)Mathf.Lerp(999, 1, val);
+		AudioRanking.text = $"{place}{GetSuffix(place)}";
+	}
 
-		GameplayRanking.text = $"{Mathf.Lerp(999, 1, t.CodeTaskAverage)}th";
-		GraphicsRanking.text = $"{Mathf.Lerp(999, 1, t.ArtTaskAverage)}th";
-		AudioRanking.text = $"{Mathf.Lerp(999, 1, t.MusicTaskAverage)}th";
+	public string GetSuffix(int val) {
+		var s = val.ToString();
+		char c = s[s.Length-1];
+
+		if(c == '1') {
+			return "st";
+		}
+		else if(c == '2') {
+			return "nd";
+		}
+		else if(c == '3') {
+			return "rd";
+		}
+		else {
+			return "th";
+		}
 	}
 }

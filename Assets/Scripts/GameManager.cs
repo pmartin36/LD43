@@ -111,7 +111,7 @@ public class GameManager : Singleton<GameManager> {
 		camera.ShowSleep();
 		yield return new WaitForSeconds(2f);
 
-		RemainingTimer.Update(-8 * 3600);
+		RemainingTimer.Update(-6 * 3600);
 		Status.Sleep();
 
 		camera.StopShowSleep();
