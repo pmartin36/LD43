@@ -16,20 +16,13 @@ public class AcceptArea : MonoBehaviour
         m = 1 << LayerMask.NameToLayer("Note");
     }
 
-	private void OnEnable() {
-		bool eating = GameManager.Instance.Status.ReliefActivity == ReliefActivity.Eating;
-		if(eating) {
+	public void Init(bool eating) {
+		if (eating) {
 			transform.localScale = new Vector3(1f, 1.75f, 0);
 		}
 		else {
 			transform.localScale = Vector3.one * 1.75f;
 		}
-	}
-
-	// Update is called once per frame
-	void Update()
-    {
-		
 	}
 
 	public int NoteMatch(InputPackage p) {

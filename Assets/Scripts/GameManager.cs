@@ -63,6 +63,14 @@ public class GameManager : Singleton<GameManager> {
 		PlayAreaMenu.Open();
 	}
 
+	public void BeginReliefActivity(ReliefActivity activity) {
+		if(activity == ReliefActivity.Sleeping) {
+			GoToSleep();
+		}
+
+		Status.BeginReliefActivity(activity);
+	}
+
 	public void GoToSleep() {
 		if(!camera.Sleeping) {
 			StartCoroutine(Sleep());
@@ -73,7 +81,6 @@ public class GameManager : Singleton<GameManager> {
 		camera.ShowSleep();
 		yield return new WaitForSeconds(2f);
 
-		
 		RemainingTimer.Update(-8 * 3600);
 		Status.Sleep();
 

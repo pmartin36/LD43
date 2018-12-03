@@ -43,6 +43,7 @@ public class MusicNote : MonoBehaviour
 			default:
 				break;
 		}
+		Destroy(this.gameObject, 15f);
 	}
 
 	public void Played() {

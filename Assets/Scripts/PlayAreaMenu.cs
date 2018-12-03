@@ -32,6 +32,13 @@ public class PlayAreaMenu : MonoBehaviour
 		}
 	}
 
+	public void ReliefActivitySelected(string s) {
+		if (!Transitioning) {
+			Enum.TryParse(s, out ReliefActivity activity);
+			GameManager.Instance.BeginReliefActivity(activity);
+		}
+	}
+
 	public void SetCurrentTask() {
 		Transitioning = false;
 		GameManager.Instance.SetCurrentTask(TransitioningTask);
@@ -40,9 +47,5 @@ public class PlayAreaMenu : MonoBehaviour
 	public void Open() {
 		Transitioning = true;
 		anim.Play("Uncover");
-	}
-
-	public void Sleep() {
-		GameManager.Instance.GoToSleep();
 	}
 }

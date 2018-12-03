@@ -70,7 +70,8 @@ public class ArtGameManager : ContextManager
 		PlayerTraceLineSegments.Clear();
 	}
 
-	public void OnDisable() {
+	public override void OnDisable() {
+		base.OnDisable();
 		if(ArtCanvas != null) {
 			ArtCanvas.gameObject.SetActive(false);
 		}
@@ -105,7 +106,8 @@ public class ArtGameManager : ContextManager
 		ScoreScreen.Show(Task, normalScore);
 	}
 
-	public void Init() {
+	public override void Init() {
+		base.Init();
 		newLinesEnabled = true;
 		PlayerTraceLineSegments = new Stack<LineSegment>();
 		PlayerTraceCheckedLinePoints = new List<LinePoint>();
@@ -168,7 +170,7 @@ public class ArtGameManager : ContextManager
 		else if (p.Z) {
 			// delete last segment
 			if (PlayerTraceLineSegments.Count > 0) {
-				if(GameManager.Instance.Status.ReliefActivity != ReliefActivity.Eating) {
+				if(ReliefActivity != ReliefActivity.Eating) {
 					var popped = PlayerTraceLineSegments.Pop();
 					PlayerTraceCheckedLinePoints.RemoveRange(PlayerTraceCheckedLinePoints.Count - popped.CheckedPoints.Count, popped.CheckedPoints.Count );
 					GameManager.DestroyImmediate(popped.gameObject);

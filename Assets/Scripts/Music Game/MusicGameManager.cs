@@ -16,6 +16,7 @@ public class MusicGameManager : ContextManager
 		base.OnEnable();
 		Score = 0;
 		spawner = spawner ?? GetComponent<NoteSpawner>();
+		Init();
 
 		if(!PlayedBefore) {
 			StartCoroutine(ShowTutorialThenStart());
@@ -29,6 +30,12 @@ public class MusicGameManager : ContextManager
 	public override void Restart() {
 		Score = 0;
 		spawner.StartSpawning(SongOver);
+		Init();
+	}
+
+	public override void Init() {
+		base.Init();
+		AcceptArea.Init(ReliefActivity == ReliefActivity.Eating);
 	}
 
 	public void SongOver() {

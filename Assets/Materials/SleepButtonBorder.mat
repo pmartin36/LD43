@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sleep
-  m_Shader: {fileID: 4800000, guid: 9a9cdafd3df40094da08822095494f7f, type: 3}
+  m_Name: SleepButtonBorder
+  m_Shader: {fileID: 4800000, guid: 8acd7c3aa9e5812428e77e49f6713988, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -66,13 +66,17 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _Offset: 1
+    - _Opacity: 0.75
     - _Parallax: 0.02
-    - _Percent: 0.51009864
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _Speed: 10
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DarkColor: {r: 0.023529414, g: 0.12941177, b: 0.4901961, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _LightColor: {r: 0.28235295, g: 0.49411768, b: 0.7176471, a: 1}

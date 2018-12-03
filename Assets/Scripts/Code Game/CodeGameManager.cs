@@ -19,17 +19,23 @@ public class CodeGameManager : ContextManager
 
 	public override void OnEnable() {
 		base.OnEnable();
-		GenerateSeries();
+		Init();
 	}
 
-	public void OnDisable() {
+	public override void OnDisable() {
+		base.OnDisable();
 		foreach (Number n in Numbers) {
 			Destroy(n.gameObject);
 		}
 	}
 
+	public override void Init() {
+		base.Init();
+		GenerateSeries();
+	}
+
 	public void GenerateSeries() {
-		bool eating = GameManager.Instance.Status.ReliefActivity == ReliefActivity.Eating;
+		bool eating =  ReliefActivity == ReliefActivity.Eating;
 		int numSeries = 7;
 
 		SeriesType seriesType = (SeriesType)UnityEngine.Random.Range(0,2);
@@ -98,7 +104,7 @@ public class CodeGameManager : ContextManager
 		foreach(Number n in Numbers) {
 			Destroy(n.gameObject);
 		}
-		GenerateSeries();
+		Init();
 	}
 
 	public void Update() {
