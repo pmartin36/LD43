@@ -26,17 +26,13 @@ public class PlayAreaMenu : MonoBehaviour
     }
 
 	public void TaskSelected(string task) {
-		if (!Transitioning) {
-			Enum.TryParse(task, out TransitioningTask);
-			anim.Play("Cover");	
-		}
+		Enum.TryParse(task, out TransitioningTask);
+		anim.Play("Cover");	
 	}
 
 	public void ReliefActivitySelected(string s) {
-		if (!Transitioning) {
-			Enum.TryParse(s, out ReliefActivity activity);
-			GameManager.Instance.BeginReliefActivity(activity);
-		}
+		Enum.TryParse(s, out ReliefActivity activity);
+		GameManager.Instance.BeginReliefActivity(activity);
 	}
 
 	public void SetCurrentTask() {

@@ -89,7 +89,12 @@ public class GameManager : Singleton<GameManager> {
 			GoToSleep();
 		}
 
-		Status.BeginReliefActivity(activity);
+		if( activity == Status.ReliefActivity ) {
+			Status.BeginReliefActivity(ReliefActivity.None);
+		}
+		else {
+			Status.BeginReliefActivity(activity);
+		}
 	}
 
 	public void GoToSleep() {

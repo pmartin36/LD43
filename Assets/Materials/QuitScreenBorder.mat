@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EatButtonBorder
+  m_Name: QuitScreenBorder
   m_Shader: {fileID: 4800000, guid: 8acd7c3aa9e5812428e77e49f6713988, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -67,7 +67,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Offset: 1
-    - _Opacity: 0.35
+    - _Opacity: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

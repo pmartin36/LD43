@@ -28,7 +28,7 @@ public class DowntimeButtonBorder : MonoBehaviour
 
 	public void ReliefChanged(object sender, ReliefActivityEventArgs args) {	
 		if(args.Activity == ButtonActivity) {
-			opacity = 0.75f;
+			opacity = 0.35f;
 		}
 		else {
 			opacity = 0f;

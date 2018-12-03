@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EatButtonBorder
+  m_Name: ScoreScreenBorder
   m_Shader: {fileID: 4800000, guid: 8acd7c3aa9e5812428e77e49f6713988, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -67,7 +67,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Offset: 1
-    - _Opacity: 0.35
+    - _Opacity: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -77,6 +77,6 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DarkColor: {r: 0.49019608, g: 0.048846368, b: 0.023529401, a: 1}
+    - _DarkColor: {r: 0.023529414, g: 0.12941177, b: 0.4901961, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LightColor: {r: 0.8396226, g: 0.35460475, b: 0.30495724, a: 1}
+    - _LightColor: {r: 0.28235295, g: 0.49411768, b: 0.7176471, a: 1}
