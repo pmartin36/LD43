@@ -25,10 +25,10 @@ public class MusicManager : MonoBehaviour
 
 	public void TaskChanged(object sender, TaskChangeEventArgs t) {
 		if( t.Task == Task.Music ) {
-			RampToVolume(0.25f);
+			RampToVolume(0.05f);
 		}
 		else {
-			RampToVolume(0.75f);
+			RampToVolume(0.25f);
 		}
 	}
 

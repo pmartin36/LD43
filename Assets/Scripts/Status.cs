@@ -64,8 +64,8 @@ public class Status  {
 	public void Update(float deltaTime) {
 		if(Paused) return;
 
-		// get totally bored after 4 hours
-		Boredom += CurrentTask == Task.None ? 0 : deltaTime / (3600f * 4f);
+		// get totally bored after 8 hours
+		Boredom += CurrentTask == Task.None ? 0 : deltaTime / (3600f * 8f);
 		if(Boredom >= 1) {
 			GameManager.Instance.JammerQuit("due to boredom");
 		}
@@ -84,10 +84,10 @@ public class Status  {
 			GameManager.Instance.JammerQuit("because you had a nervous breakdown");
 		}
 
-		// starve after 24 hours
+		// starve after 10 hours
 		Hunger += ReliefActivity == ReliefActivity.Eating ?
 			-deltaTime / (3600f * 4f):
-			deltaTime / (3600f * 24f);
+			deltaTime / (3600f * 10f);
 		if(Hunger >= 1) {
 			GameManager.Instance.JammerQuit("because you were starving");
 		}

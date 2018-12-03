@@ -26,7 +26,7 @@ public class AcceptArea : MonoBehaviour
 
 	public void Init(bool eating) {
 		if (eating) {
-			transform.localScale = new Vector3(1f, 1.75f, 0);
+			transform.localScale = new Vector3(1.2f, 1.75f, 0);
 		}
 		else {
 			transform.localScale = Vector3.one * 1.75f;

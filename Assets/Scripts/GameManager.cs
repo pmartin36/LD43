@@ -9,8 +9,8 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(MusicManager))]
 public class GameManager : Singleton<GameManager> {
 
-	public static float TIMESCALE = 180f;
-	public static float TOTAL_TIME = 0.25f * 3600;
+	public static float TIMESCALE = 240f;
+	public static float TOTAL_TIME = 48 * 3600;
 	public static event EventHandler<TaskChangeEventArgs> TaskChanged;
 
 	public ContextManager ContextManager;
@@ -29,7 +29,7 @@ public class GameManager : Singleton<GameManager> {
 	public PostGameCanvas PostGameCanvas;
 	private bool gameOver = false;
 
-	public bool SkipIntro = true;
+	public bool SkipIntro = false;
 
 	public void Awake() {
 		musicManager = GetComponent<MusicManager>();
@@ -62,6 +62,7 @@ public class GameManager : Singleton<GameManager> {
 	}
 
 	public void JammerQuit(string reason) {
+		Status.Paused = true;
 		QuitScreen.Show(reason);
 	}
 
