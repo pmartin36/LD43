@@ -27,19 +27,16 @@ public class GameManager : Singleton<GameManager> {
 	public PostGameCanvas PostGameCanvas;
 	private bool gameOver = false;
 
+	public bool SkipIntro = false;
+
 	public void Awake() {
 		Init();
 	}
 
 	public void Init() {
-		RemainingTimer = new Timer();
+		RemainingTimer = new Timer(TOTAL_TIME, true);
 		Status = new Status();
 		TaskTracker = new CompletedTaskTracker();
-		RemainingTimer.Value = TOTAL_TIME;
-	}
-
-	public void Start() {
-		RemainingTimer.Paused = false;
 	}
 
 	public void Update() {

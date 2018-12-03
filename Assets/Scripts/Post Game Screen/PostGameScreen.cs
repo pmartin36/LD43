@@ -11,7 +11,10 @@ public class PostGameScreen : MonoBehaviour
 
 	public void Init(Status status, CompletedTaskTracker tasks) {
 		float subtraction = status.Anxiety + status.Boredom + status.Hunger + status.Sleepiness;
-		float addition = (tasks.ArtTaskAverage + tasks.CodeTaskAverage + tasks.MusicTaskAverage) * 5 / 3f;
+		float addition = 
+			(tasks.ArtTaskAverage * (tasks.ArtTasksCompleted / 10f) + 
+			 tasks.CodeTaskAverage * (tasks.CodeTasksCompleted / 10f) + 
+			 tasks.MusicTaskAverage * (tasks.MusicTasksCompleted / 10f)) * 5 / 3f;
 
 		float finalScore = addition - subtraction;
 		FinalScoreField.text = string.Format("{0:0.0}", finalScore);

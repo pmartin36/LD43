@@ -13,13 +13,13 @@ public class GameScores : MonoBehaviour {
 	public TMP_Text AudioAverage;
 
 	public void Init(CompletedTaskTracker t) {
-		string text = string.Format("{0:0.0}", t.CodeTaskAverage * 5);
+		string text = string.Format("{0:0.0}", t.CodeTaskAverage * 5 * (t.CodeTasksCompleted / 10f));
 		GameplayAverage.text = $"({text} average from {t.CodeTasksCompleted} ratings)";
 
-		text = string.Format("{0:0.0}", t.ArtTaskAverage * 5);
+		text = string.Format("{0:0.0}", t.ArtTaskAverage * 5 * (t.ArtTasksCompleted / 10f));
 		GraphicsAverage.text = $"({text} average from {t.ArtTasksCompleted} ratings)";
 
-		text = string.Format("{0:0.0}", t.MusicTaskAverage * 5);
+		text = string.Format("{0:0.0}", t.MusicTaskAverage * 5 * (t.MusicTasksCompleted / 10f));
 		AudioAverage.text = $"({text} average from {t.MusicTasksCompleted} ratings)";
 
 		GameplayRanking.text = $"{Mathf.Lerp(999, 1, t.CodeTaskAverage)}th";

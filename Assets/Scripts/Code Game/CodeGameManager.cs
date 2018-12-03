@@ -73,30 +73,34 @@ public class CodeGameManager : ContextManager
 		float currentLeft = 75;
 		float currentRight = 975;
 
-		for (int i = 0; i < numSeries; i++) {
-			CorrectSeries.Add(currentValue);
+		do {
+			CorrectSeries.Clear();
+			for(int i = 0; i < numSeries; i++) {
+				CorrectSeries.Add(currentValue);
+				switch (seriesType) {
+					default:
+					case SeriesType.Multiply:
+						currentValue = currentValue * mult + plus;
+						break;
+					case SeriesType.Linear:
+						currentValue = (i + 1) * mult + plus;
+						break;
+				}
+			}
+		} while( CorrectSeries[0] == CorrectSeries[CorrectSeries.Count -1] ); // make sure the series isn't all the same #
 
+		for (int i = 0; i < numSeries; i++) {	
 			var number = Instantiate(NumberPrefab, NumberParent);
 			number.Init(
 				missingNumbers.Contains(i),
 				currentLeft,
 				currentRight,
-				currentValue
+				CorrectSeries[i]
 			);
 			Numbers.Add(number);
 
 			currentLeft += 150f;
 			currentRight -= 150f;
-
-			switch (seriesType) {
-				default:
-				case SeriesType.Multiply:
-					currentValue = currentValue * mult + plus;
-					break;
-				case SeriesType.Linear:
-					currentValue = (i+1) * mult + plus;
-					break;
-			}
 		}
 	}
 
