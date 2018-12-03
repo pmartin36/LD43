@@ -20,6 +20,7 @@ public class CodeGameManager : ContextManager
 
 	[SerializeField]
 	private Button SubmitButton;
+	private TMPro.TMP_Text submitButtonText;
 
 	public override void OnEnable() {
 		base.OnEnable();
@@ -33,9 +34,15 @@ public class CodeGameManager : ContextManager
 		}
 	}
 
+	private void SetSubmitButtonActive(bool active) {
+		submitButtonText = submitButtonText ?? SubmitButton.GetComponentInChildren<TMPro.TMP_Text>();
+		SubmitButton.interactable = active;
+		submitButtonText.color = active ? Color.white : new Color(0.25f, 0.25f, 0.25f);
+	}
+
 	public override void Init() {
 		base.Init();
-		SubmitButton.interactable = true;
+		SetSubmitButtonActive(true);
 		GenerateSeries();
 	}
 
@@ -121,7 +128,7 @@ public class CodeGameManager : ContextManager
 	}
 
 	public void Submit() {
-		SubmitButton.interactable = false;
+		SetSubmitButtonActive(false);
 		var numCorrect = 0;
 		for(int i = 0; i < CorrectSeries.Count; i++) {
 			if(Numbers[i].Fillable && Numbers[i].Value == CorrectSeries[i] ) {

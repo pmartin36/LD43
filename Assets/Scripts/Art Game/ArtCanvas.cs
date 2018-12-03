@@ -7,13 +7,18 @@ public class ArtCanvas : MonoBehaviour {
 
 	[SerializeField]
 	private Button submitButton;
+	private TMP_Text submitButtonText;
+
 	[SerializeField]
 	private TMP_Text EatingHelpText;
 
 	private Coroutine EatHelp;
 
 	public void SetSubmitButtonActive(bool active) {
+		submitButtonText = submitButtonText ?? submitButton.GetComponentInChildren<TMP_Text>();
 		submitButton.interactable = active;
+
+		submitButtonText.color = active ? Color.white : new Color(0.25f, 0.25f, 0.25f);
 	}
 
 	public void ShowUndoInvalid() {
