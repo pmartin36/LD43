@@ -16,7 +16,6 @@ public class CodeGameManager : ContextManager
 	private List<int> CorrectSeries;
 	private List<Number> Numbers;
 	public Number NumberPrefab;
-	public ScoreScreen ScoreScreen;
 
 	[SerializeField]
 	private Button SubmitButton;
@@ -78,7 +77,7 @@ public class CodeGameManager : ContextManager
 					mult_min = 2;
 					mult_max = 2;
 					plus = UnityEngine.Random.Range(-1, 3);
-					currentValue = UnityEngine.Random.Range(0, 4);
+					currentValue = plus;
 					break;
 				case SeriesType.Linear:
 					mult_min = 2;
@@ -102,7 +101,7 @@ public class CodeGameManager : ContextManager
 						break;
 				}
 			}
-		} while( CorrectSeries[0] == CorrectSeries[CorrectSeries.Count -1] ); // make sure the series isn't all the same #
+		} while( CorrectSeries[0] == CorrectSeries[CorrectSeries.Count -1] || CorrectSeries[CorrectSeries.Count - 1] < 0); // make sure the series isn't all the same #
 
 		for (int i = 0; i < numSeries; i++) {	
 			var number = Instantiate(NumberPrefab, NumberParent);

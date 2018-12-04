@@ -9,10 +9,17 @@ public abstract class ContextManager : MonoBehaviour
 	protected ReliefActivity ReliefActivity;
 	[SerializeField]
 	protected GameObject SunGlare;
+	public ScoreScreen ScoreScreen;
 
 	public virtual void OnEnable() {
 		GameManager.Instance.ContextManager = this;
 	}
+
+	public void HideUI() {
+		SunGlare.gameObject.SetActive(false);
+		ScoreScreen.gameObject.SetActive(false);
+	}
+
 	public virtual void OnDisable() {
 		if(SunGlare != null)
 			SunGlare.SetActive(false);

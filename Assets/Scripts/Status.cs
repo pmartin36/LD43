@@ -69,12 +69,14 @@ public class Status  {
 		if(Boredom >= 1) {
 			GameManager.Instance.JammerQuit("due to boredom");
 		}
+		Boredom = Mathf.Clamp01(Boredom);
 	
 		// get sleepy after 16 hours
 		Sleepiness += deltaTime / (3600f * 16f);
 		if (Sleepiness >= 1) {
 			GameManager.Instance.JammerQuit("because you fell asleep");
 		}
+		Sleepiness = Mathf.Clamp01(Sleepiness);
 
 		// get more anxious as we get closer to deadline
 		Anxiety += ReliefActivity == ReliefActivity.Outside ?
@@ -83,6 +85,7 @@ public class Status  {
 		if (Anxiety >= 1) {
 			GameManager.Instance.JammerQuit("because you had a nervous breakdown");
 		}
+		Anxiety = Mathf.Clamp01(Anxiety);
 
 		// starve after 10 hours
 		Hunger += ReliefActivity == ReliefActivity.Eating ?
@@ -91,6 +94,7 @@ public class Status  {
 		if(Hunger >= 1) {
 			GameManager.Instance.JammerQuit("because you were starving");
 		}
+		Hunger = Mathf.Clamp01(Hunger);
 	}
 
 	public void SwitchingTask(object sender, TaskChangeEventArgs args) {

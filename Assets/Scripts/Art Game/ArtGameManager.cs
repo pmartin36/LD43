@@ -17,7 +17,6 @@ public class ArtGameManager : ContextManager
 	private static Task Task = Task.Art;
 
 	private bool newLinesEnabled = false;
-	public ScoreScreen ScoreScreen;
 
 	private Stack<LineSegment> PlayerTraceLineSegments;
 	private List<LinePoint> ActualTraceCheckedLinePoints;

@@ -9,7 +9,6 @@ public class MusicGameManager : ContextManager
 	private NoteSpawner spawner;
 	public AcceptArea AcceptArea;
 	public Tutorial Tutorial;
-	public ScoreScreen ScoreScreen;
 	public int Score { get; private set; }
 
 	public override void OnEnable() {

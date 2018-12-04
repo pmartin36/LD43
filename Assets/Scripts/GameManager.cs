@@ -53,6 +53,10 @@ public class GameManager : Singleton<GameManager> {
 			RemainingTimer.Update(-Time.deltaTime * TIMESCALE);
 			if(RemainingTimer.Expired) {
 				gameOver = true;
+
+				QuitScreen.gameObject.SetActive(false);
+				ContextManager.HideUI();
+
 				var ps = PostGameCanvas.PostGameScreen;
 				ps.gameObject.SetActive(true);
 				ps.Init(Status, TaskTracker);
