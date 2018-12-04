@@ -21,6 +21,9 @@ public class CodeGameManager : ContextManager
 	private Button SubmitButton;
 	private TMPro.TMP_Text submitButtonText;
 
+	[SerializeField]
+	public GameObject Tutorial;
+
 	public override void OnEnable() {
 		base.OnEnable();
 		Init();	
@@ -28,6 +31,7 @@ public class CodeGameManager : ContextManager
 
 	public override void OnDisable() {
 		base.OnDisable();
+		Tutorial.SetActive(false);
 		foreach (Number n in Numbers) {
 			Destroy(n.gameObject);
 		}
@@ -41,6 +45,7 @@ public class CodeGameManager : ContextManager
 
 	public override void Init() {
 		base.Init();
+		Tutorial.SetActive(true);
 		SetSubmitButtonActive(true);
 		GenerateSeries();
 	}
