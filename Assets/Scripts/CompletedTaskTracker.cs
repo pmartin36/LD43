@@ -29,15 +29,15 @@ public class CompletedTaskTracker
 		int newCount = 0;
 		switch (t) {
 			case Task.Art:
-				ArtTaskAverage = ArtTaskAverage * ArtTasksCompleted + score / (ArtTasksCompleted + 1);
+				ArtTaskAverage = (ArtTaskAverage * ArtTasksCompleted + score) / (ArtTasksCompleted + 1);
 				newCount = ++ArtTasksCompleted;
 				break;
 			case Task.Code:
-				CodeTaskAverage = CodeTaskAverage * CodeTasksCompleted + score / (CodeTasksCompleted + 1);
+				CodeTaskAverage = (CodeTaskAverage * CodeTasksCompleted + score) / (CodeTasksCompleted + 1);
 				newCount = ++CodeTasksCompleted;
 				break;
 			case Task.Music:
-				MusicTaskAverage = MusicTaskAverage * MusicTasksCompleted + score / (MusicTasksCompleted + 1);
+				MusicTaskAverage = (MusicTaskAverage * MusicTasksCompleted + score) / (MusicTasksCompleted + 1);
 				newCount = ++MusicTasksCompleted;
 				break;
 		}
